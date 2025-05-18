@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <style type="text/css" media="all">
+      body{
+  padding: 25px;
+}
+@media (prefers-color-scheme: dark) {
+  * {
+    color: #eee;
+    background: #222;
+  }
+}
+* {
+  font-family: system-ui;
+}
+    </style>
+  </head>
+  <body>
+    <div id="early">not yet dai</div>
+    <div id="countdown"></div>
+    <div id="late">
+      <!-- hooray nlng saiyo -->
+      <a href="https://drive.google.com/drive/folders/1AlZc_gEZoaF_6_eZkMWHc2NUkR0S8wGI?usp=sharing">https://drive.google.com/drive/folders/1AlZc_gEZoaF_6_eZkMWHc2NUkR0S8wGI?usp=sharing</a>
+    </div>
+  </body>
+  <script>
+    const early = document.getElementById("early");
+    const late = document.getElementById("late");
+    const targetDate = new Date("2025-05-18T23:33:30").getTime();
+    late.style["display"] = "none";
+
+    const countdown = document.getElementById("countdown");
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          countdown.innerHTML = "hooray!";
+          late.style["display"] = "block";
+          early.style["display"] = "none";
+          return;
+        }
+
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+    }, 1000)
+  </script>
+</html>
